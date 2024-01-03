@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  hashPassword String
+  username     String    @unique @default("@${cuid()}")
+  createdAt    DateTime  @default(now())
+  modifyAt     DateTime?
+  refreshToken String?
+  Orders       Orders[]
+}
+
+model PhotosPosition {
+  id          String     @id @default(uuid())
+  src         String
+  isUpload    Boolean    @default(false)
+  positions   Positions? @relation(fields: [positionsId], references: [id])
+  positionsId String?
+  modifyAt    DateTime?
+}
+
+enum PositionCategory {
+  Clothes
+  Bags
+  Shoes
+  Accessories
+}
+
+model Positions {
+  id          String           @id @default(uuid())
+  name        String
+  description String
+  image       PhotosPosition[]
+  size        String
+  price       Decimal
+  shipping    String
+  code        String           @unique
+  category    PositionCategory
+  orders      Orders[]
+  createdAt   DateTime         @default(now())
+}
+
+model Promocodes {
+  id         String   @id @default(uuid())
+  promo      String   @unique
+  discoint   Int
+  expiryDate DateTime
+  tag        String
+  orders     Orders[]
+  createdAt  DateTime @default(now())
+}
+
+enum OrderStatus {
+  Success
+  Failed
+  Waiting
+}
+
+model Orders {
+  id           String      @id
+  status       OrderStatus
+  payment      String
+  promocode    Promocodes? @relation(fields: [promocodesId], references: [id])
+  promocodesId String?
+  user         Users       @relation(fields: [usersId], references: [id])
+  usersId      String
+  position     Positions   @relation(fields: [id], references: [id])
+  createdAt    DateTime    @default(now())
+}
