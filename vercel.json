@@ -2,6 +2,6 @@
     "version": 2,
     "buildCommand": "npm run build",
 
-    "routes": [{ "src": "/(.*)", "dest": "/dist/main.js" }]
+    "routes": [{ "src": "/(.*)", "dest": "/main.js" }]
   }
   
