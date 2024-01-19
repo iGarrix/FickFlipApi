@@ -4,8 +4,8 @@ import { PositionsModule } from './controllers/positions/positions.module';
 import { PromocodesModule } from './controllers/promocodes/promocodes.module';
 import { UsersModule } from './db/users/users.module';
 import { OrdersModule } from './controllers/orders/orders.module';
-import { ImagesController } from './controllers/images/images.controller';
 import { ImagesModule } from './controllers/images/images.module';
+import { MainController } from './app.controller';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { ImagesModule } from './controllers/images/images.module';
     OrdersModule,
     ImagesModule,
   ],
-  controllers: [],
+  controllers: [MainController],
   providers: [],
 })
 export class AppModule {}

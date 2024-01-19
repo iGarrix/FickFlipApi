@@ -12,11 +12,11 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  //const document = SwaggerModule.createDocument(app, config);
+  //SwaggerModule.setup('api', app, document);
 
   app.enableCors();
 
-  await app.listen(8000);
+  await app.listen(3000);
 }
 bootstrap();
