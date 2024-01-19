@@ -5,8 +5,6 @@ import { PrismaService } from 'src/prisma.service';
 import { PositionsService } from '../positions/positions.service';
 import { PromocodesService } from '../promocodes/promocodes.service';
 import { CreateOrderDto } from 'src/domain/dtos/orderDtos/create-order.dto';
-import { Prisma } from '@prisma/client';
-import { DefaultArgs } from '@prisma/client/runtime/library';
 
 @Injectable()
 export class OrdersService {
