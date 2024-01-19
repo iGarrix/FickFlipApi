@@ -16,7 +16,7 @@ import { MainController } from './app.controller';
     OrdersModule,
     ImagesModule,
   ],
-  controllers: [MainController],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}
